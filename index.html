@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Space Facts Explorer</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #1a1a2e, #16213e);
+            color: #fff;
+        }
+
+        .fact-card {
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            padding: 20px;
+            margin: 10px;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(5px);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .fact-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0, 123, 255, 0.2);
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .fun-factor {
+            color: #00ff88;
+            font-weight: bold;
+        }
+
+        .category {
+            background-color: rgba(0, 123, 255, 0.2);
+            padding: 6px 12px;
+            border-radius: 20px;
+            display: inline-block;
+            margin-top: 8px;
+            border: 1px solid rgba(0, 123, 255, 0.5);
+            color: #00ff88;
+        }
+
+        #facts-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+            padding: 20px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        header {
+            background: linear-gradient(90deg, #0052d4, #4364f7, #6fb1fc);
+            color: white;
+            padding: 30px;
+            text-align: center;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            margin: 0;
+            font-size: 2.5em;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        h3 {
+            color: #00ff88;
+            margin-top: 0;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>✨ Space Facts Explorer ✨</h1>
+    </header>
+    <div id="facts-container"></div>
+
+    <script>
+        const spaceData = {
+            "spaceFacts": [
+                {
+                    "id": 1,
+                    "fact": "One day on Venus is longer than one year on Venus",
+                    "category": "planets",
+                    "funFactor": 9
+                },
+                {
+                    "id": 2,
+                    "fact": "The Sun makes up 99.86% of our solar system's mass",
+                    "category": "sun",
+                    "funFactor": 8
+                },
+                {
+                    "id": 3,
+                    "fact": "There are more stars in the universe than grains of sand on Earth",
+                    "category": "universe",
+                    "funFactor": 9
+                },
+                {
+                    "id": 4,
+                    "fact": "A black hole's gravitational pull is so strong that even light cannot escape it",
+                    "category": "blackHoles",
+                    "funFactor": 9
+                },
+                {
+                    "id": 5,
+                    "fact": "The footprints on the Moon will last for 100 million years",
+                    "category": "moon",
+                    "funFactor": 8
+                },
+                {
+                    "id": 6,
+                    "fact": "The largest known asteroid is 945 kilometers in diameter",
+                    "category": "asteroids",
+                    "funFactor": 7
+                },
+                {
+                    "id": 7,
+                    "fact": "Jupiter's Great Red Spot is shrinking",
+                    "category": "planets",
+                    "funFactor": 7
+                },
+                {
+                    "id": 8,
+                    "fact": "Space is completely silent because there is no air to carry sound waves",
+                    "category": "space",
+                    "funFactor": 8
+                },
+                {
+                    "id": 9,
+                    "fact": "The Milky Way galaxy is moving through space at 2.1 million kilometers per hour",
+                    "category": "galaxies",
+                    "funFactor": 9
+                },
+                {
+                    "id": 10,
+                    "fact": "There are more trees on Earth than stars in the Milky Way",
+                    "category": "comparison",
+                    "funFactor": 8
+                },
+                {
+                    "id": 11,
+                    "fact": "The largest known star, UY Scuti, is 1,700 times larger than our Sun",
+                    "category": "stars",
+                    "funFactor": 9
+                },
+                {
+                    "id": 12,
+                    "fact": "A day on Mars is only 37 minutes longer than a day on Earth",
+                    "category": "planets",
+                    "funFactor": 7
+                },
+                {
+                    "id": 13,
+                    "fact": "The International Space Station travels at 7.66 kilometers per second",
+                    "category": "spaceExploration",
+                    "funFactor": 8
+                },
+                {
+                    "id": 14,
+                    "fact": "Neptune's winds are the fastest in the solar system, reaching 2,100 km/hour",
+                    "category": "planets",
+                    "funFactor": 8
+                },
+                {
+                    "id": 15,
+                    "fact": "Light from the Sun takes 8 minutes and 20 seconds to reach Earth",
+                    "category": "sun",
+                    "funFactor": 8
+                },
+                {
+                    "id": 16,
+                    "fact": "Saturn is the only planet that could float in water",
+                    "category": "planets",
+                    "funFactor": 9
+                },
+                {
+                    "id": 17,
+                    "fact": "The first photo of a black hole was released in 2019",
+                    "category": "blackHoles",
+                    "funFactor": 9
+                },
+                {
+                    "id": 18,
+                    "fact": "There are billions of galaxies in the observable universe",
+                    "category": "universe",
+                    "funFactor": 8
+                },
+                {
+                    "id": 19,
+                    "fact": "Astronauts grow taller in space due to the absence of gravity",
+                    "category": "spaceExploration",
+                    "funFactor": 7
+                },
+                {
+                    "id": 20,
+                    "fact": "The largest volcano in the solar system is on Mars (Olympus Mons)",
+                    "category": "planets",
+                    "funFactor": 8
+                }
+            ]
+        };
+
+        function displayFacts() {
+            const container = document.getElementById('facts-container');
+            spaceData.spaceFacts.forEach(fact => {
+                const factCard = document.createElement('div');
+                factCard.className = 'fact-card';
+                factCard.innerHTML = `
+                    <h3>Fact #${fact.id}</h3>
+                    <p>${fact.fact}</p>
+                    <p class="fun-factor">Fun Factor: ${fact.funFactor}/10</p>
+                    <span class="category">${fact.category}</span>
+                `;
+                container.appendChild(factCard);
+            });
+        }
+
+        window.onload = displayFacts;
+    </script>
+</body>
+</html>
